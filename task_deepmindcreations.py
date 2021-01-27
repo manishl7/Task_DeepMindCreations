@@ -14,6 +14,8 @@ response=requests.get(url)
 data=response.text
 soup=BeautifulSoup(data,'lxml')
 
+#Getting all the data from Table
+
 tags=soup.table
 tag=tags.find_all('tr',align=False)
 list1=[]#Initializing an empty list
@@ -25,6 +27,32 @@ for j in list1:
   l2.append(l1[2:-1])
 for c in l2: #Using F-literal string for better visualization of data
   print(f"{c[0]:{30}}{c[1]:<{20}}{c[2]:{20}}{c[3]:{20}}{c[4]:{20}}{c[5]:{20}}{c[6]:{20}}{c[7]:{20}}{c[8]:{20}}{c[9]:{20}}{c[10]:{20}}{c[11]:{20}}{c[12]:{20}}{c[13]:{20}}{c[14]:{20}}{c[15]:{20}}")
+
+#Getting all the news headlines and links for each of the countries
+
+a=soup.find_all('div','news_post')
+list_span=[]
+for items in a:
+  list_span.append(items.get_text())
+news_title=[]
+for texts in list_span:
+  a=texts.split('\n')
+  news_title.append(a[2:-2])
+#print(len(news_title))
+print(news_title) #Displays all the news title
+link=[]
+soup=soup.find_all('div','news_post')
+for i in range(len(soup)):
+    l = soup[i].find("a").get("href")
+    link.append(l)
+print(len(link))
+nlink=link[0:-4] #Sorting links 
+n=[] #Assigning empty list for links
+for links in nlink:
+  b='https://www.worldometers.info'+links
+
+  n.append(b)
+print(n) #Displays all the links
 
 #Visualing data using Matplob lib
 
@@ -69,6 +97,204 @@ fig.show()
 
 # fig = go.Figure(data=[go.Pie(labels=cn, values=sortedTC)])
 # fig.show()
+
+
+
+from bs4 import BeautifulSoup#id="newsdate2021-01-26"
+import requests 
+url=BeautifulSoup('https://www.worldometers.info/coronavirus/','html.parser')
+response=requests.get(url)
+data=response.text
+soup=BeautifulSoup(data,'lxml')
+
+from bs4 import BeautifulSoup#id="newsdate2021-01-26"
+import requests 
+url=BeautifulSoup('https://www.worldometers.info/coronavirus/','html.parser')
+response=requests.get(url)
+data=response.text
+soup=BeautifulSoup(data,'lxml')
+
+#a=soup.find_all('span',"news_category_title")
+a=soup.find_all('div','news_post')
+list_span=[]
+for items in a:
+  list_span.append(items.get_text())
+news_title=[]
+for texts in list_span:
+  a=texts.split('\n')
+  news_title.append(a[2:-2])
+#print(len(news_title))
+print(news_title) #Displays all the news title
+link=[]
+soup=soup.find_all('div','news_post')
+for i in range(len(soup)):
+    l = soup[i].find("a").get("href")
+    link.append(l)
+print(len(link))
+nlink=link[0:-4] #Sorting links 
+n=[] #Assigning empty list for links
+for links in nlink:
+  b='https://www.worldometers.info'+links
+
+  n.append(b)
+print(n) #Displays all the links
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# links = []
+# soup = soup.find("div", "travel-section")
+# soup = soup.find("div", "centralizer clearfix")
+# # soup = soup.find("ul", "list-news  clearfix")
+# soup = soup.find("div", "travel-container")
+# soup = soup.find("ul"," list-news  clearfix")
+# soup = soup.find_all('figure')
+# soup = soup[0:3]
+
+# print(soup)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
